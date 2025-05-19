@@ -20,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
         CommandLine cli = initArgs(args);
         if (cli == null) {
+            log.error("初始化失败...");
             return;
         }
 
