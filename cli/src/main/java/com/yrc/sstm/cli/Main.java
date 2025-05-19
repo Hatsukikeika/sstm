@@ -68,7 +68,7 @@ public class Main {
             .filter(it -> !cli.hasOption(it.getOpt()))
             .findFirst();
         if (absentOption.isPresent()) {
-            log.error("需要参数：{}", absentOption.get().getOpt());
+            log.error("需要参数：{}", absentOption.get().getLongOpt());
             return false;
         }
         return true;
