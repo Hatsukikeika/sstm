@@ -1,0 +1,31 @@
+name: SSTM Daily SignIn
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 18 * * *'  # 北京时间 6:30 (UTC+8)
+
+jobs:
+  signin:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '8'
+          cache: 'maven'  # 使用官方推荐的 Maven 依赖缓存
+
+      - name: Build and execute
+        env:
+          IPS4_LOGIN_KEY_OPTION: ${{ secrets.IPS4_LOGIN_KEY_OPTION }}
+          IPS4_MEMBER_ID_OPTION: ${{ secrets.IPS4_MEMBER_ID_OPTION }}
+          IPS4_SS_ID_OPTION: ${{ secrets.IPS4_SS_ID_OPTION }}
+        run: |
+          mvn -B compile
+          mvn exec:java -pl cli \
+            -Dexec.mainClass="com.yrc.sstm.cli.Main" \
+            -Dexec.args="--ips4_login_key $IPS4_LOGIN_KEY_OPTION --ips4_member_id $IPS4_MEMBER_ID_OPTION --ips4_ss_id $IPS4_SS_ID_OPTION"
