@@ -68,7 +68,6 @@ public class Main {
             .filter(it -> !cli.hasOption(it.getOpt()))
             .findFirst();
         if (absentOption.isPresent()) {
-            System.err.println(String.format("需要参数：%s", absentOption.get().getOpt()));
             log.error("需要参数：{}", absentOption.get().getOpt());
             return false;
         }
@@ -84,11 +83,9 @@ public class Main {
                 return null;
             }
         } catch (MissingArgumentException e) {
-            System.err.println("参数不完整");
             log.error("参数不完整");
             helpFormatter.printHelp(APPLICATION_NAME, getOptions());
         } catch (ParseException e) {
-            System.err.println("参数解析失败");
             log.error("参数解析失败");
             helpFormatter.printHelp(APPLICATION_NAME, getOptions());
         }
