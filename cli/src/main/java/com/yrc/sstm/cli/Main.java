@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         CommandLine cli = initArgs(args);
         if (cli == null) {
-            throw new RuntimeException("初始化失败...");
+            System.exit(1);
         }
 
         SstmConfig sstmConfig = buildSstmConfig(cli);

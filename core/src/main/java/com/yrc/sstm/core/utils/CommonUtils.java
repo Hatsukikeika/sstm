@@ -35,7 +35,7 @@ public class CommonUtils {
             String username = response.parse().select(USERNAME_PATH).get(0).text();
             log.info("发现用户：{}", username);
             return response.cookies().get(CookieField.IPS4_IPSSESSIONFRONT_NAME.toString());
-        } catch (IOException e) {
+        } catch (IOException | IndexOutOfBoundsException e) {
             log.error("无法获取session，尝试试用代理");
             return null;
         }
