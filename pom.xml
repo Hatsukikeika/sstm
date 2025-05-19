@@ -39,13 +39,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <profiles>
-        <profile>
-            <id>github-action</id>
-                <modules>
-                    <module>core</module>
-                    <module>cli</module>
-                </modules> 
-        </profile>
-    </profiles>
 </project>
