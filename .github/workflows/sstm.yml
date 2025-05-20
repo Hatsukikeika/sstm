@@ -27,6 +27,6 @@ jobs:
           IPS4_DEVICE_KEY_OPTION: ${{ secrets.IPS4_DEVICE_KEY_OPTION }}
         run: |
           mvn clean install -DskipTests
-          mvn -X exec:java -pl cli \
+          mvn exec:java -pl cli \
             -Dexec.mainClass="com.yrc.sstm.cli.Main" \
             -Dexec.args="--ips4_login_key $IPS4_LOGIN_KEY_OPTION --ips4_member_id $IPS4_MEMBER_ID_OPTION --ips4_ss_id $IPS4_SS_ID_OPTION --ips4_device_key $IPS4_DEVICE_KEY_OPTION"
