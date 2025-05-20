@@ -2,7 +2,7 @@ name: SSTM Daily SignIn
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 18 * * *'  # 北京时间 6:30 (UTC+8)
+    - cron: '30 17 * * *'  # 北京时间 01:30 (UTC+8)
 
 jobs:
   signin:
