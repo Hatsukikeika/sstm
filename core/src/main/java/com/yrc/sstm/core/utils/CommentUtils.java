@@ -79,7 +79,7 @@ public class CommentUtils {
             form = topicPage.select(FORM_PATH);
         } catch (IOException e) {
             log.error("无法获取签到帖列表，尝试试用代理");
-            return;
+            throw new RuntimeException(e);
         }
         //获取csrfKey
         String csrfKey = form.select(CSRF_KEY_PATH).get(0).attr(ATTR_VALUE);
@@ -113,7 +113,7 @@ public class CommentUtils {
                 .get();
         } catch (IOException e) {
             log.error("无法获取签到帖列表，尝试试用代理");
-            return;
+            throw new RuntimeException(e);
         }
         String topicCommentUploadName = uploadPage.select(INPUT_PATH).get(0).attr(ATTR_NAME);
         formData.setTopicCommentUploadName(topicCommentUploadName);
@@ -128,6 +128,7 @@ public class CommentUtils {
                 .post();
         } catch (IOException e) {
             log.error("发帖失败，尝试使用代理");
+            throw new RuntimeException(e);
         }
         log.info("发帖完成");
     }

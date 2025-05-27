@@ -25,8 +25,12 @@ public class Main {
 
         SstmConfig sstmConfig = buildSstmConfig(cli);
         SstmHomePage homePage = new SstmHomePage(sstmConfig);
-        homePage.login();
-        homePage.checkIn();
+        try {
+            homePage.login();
+            homePage.checkIn();
+        } catch(Exception exception) {
+            System.exit(1);
+        }
     }
 
     private static SstmConfig buildSstmConfig(CommandLine cli) {

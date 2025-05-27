@@ -31,7 +31,7 @@ public class TopicListUtils {
                 .get();
         } catch (IOException e) {
             log.error("无法获取签到帖列表，尝试试用代理");
-            return null;
+            throw new RuntimeException(e);
         }
         Elements topicList = topicListPage.select(TOPIC_CSS_PATH);
         Element todayTopic = topicList.get(0);

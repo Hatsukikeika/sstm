@@ -33,7 +33,7 @@ public class SstmHomePage {
     public void checkIn() {
         if (!isLogin()) {
             log.error("未登录");
-            return;
+            throw new RuntimeException("未登录");
         }
         String todayTopicUrl = TopicListUtils.getTodayTopicUrl(proxy);
         CommentUtils.sendComment(todayTopicUrl, checkInMessage, proxy, cookies);
